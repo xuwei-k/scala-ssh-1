@@ -71,6 +71,9 @@ sealed abstract class FromStringsHostConfigProvider extends HostConfigProvider {
   def apply(host: String): Try[HostConfig] =
     rawLines(host).flatMap {
       case (source, lines) ⇒
+        println()
+        println((source, lines))
+        println()
         for {
           settings          ← splitToMap(lines, source)
           login             ← login(settings, source)
@@ -200,10 +203,12 @@ object HostResourceConfig {
   def apply(resourceBase: String): HostConfigProvider =
     new FromStringsHostConfigProvider {
       protected def rawLines(host: String): Try[(String, TraversableOnce[String])] = {
+        println("host = " + host)
         val locations = HostFileConfig.searchLocations(host).map(resourceBase + _)
         locations
           .map { location ⇒
             location → {
+              println("location = " + location)
               val inputStream = getClass.getClassLoader.getResourceAsStream(location)
               if (inputStream ne null) {
                 try new StreamCopier().drainToString(inputStream).split("\n").toList.filter(_.nonEmpty)

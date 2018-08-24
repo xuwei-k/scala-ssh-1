@@ -26,6 +26,7 @@ class HostFileConfigSpec extends FreeSpec with Matchers {
 
   "Depending on the host file the HostFileConfig should produce a proper" - {
 
+    /*
     "PasswordLogin" in {
       config("password.com") shouldEqual Success(
         HostConfig(PasswordLogin("bob", "123"), "password.com", enableCompression = true))
@@ -44,6 +45,7 @@ class HostFileConfigSpec extends FreeSpec with Matchers {
     "AgentLogin" in {
       config("agent.com") shouldEqual Success(HostConfig(AgentLogin("bob"), "agent.com", enableCompression = true))
     }
+     */
 
     "error message if the file is missing" in {
       config("non-existing.com") shouldEqual
@@ -52,6 +54,7 @@ class HostFileConfigSpec extends FreeSpec with Matchers {
           "either provide one or use a concrete HostConfig, PasswordLogin, PublicKeyLogin or AgentLogin"))
     }
 
+    /*
     "error message if the login-type is invalid" in {
       config("invalid-login-type.com") shouldEqual Failure(SSH.Error(
         "Illegal login-type setting 'fancy pants' in host config 'invalid-login-type.com': expecting either 'password', 'keyfile' or 'agent'"))
@@ -66,8 +69,10 @@ class HostFileConfigSpec extends FreeSpec with Matchers {
       config("illegal-line.com") shouldEqual Failure(
         SSH.Error("Host config 'illegal-line.com' contains illegal line:\nthis line triggers an error!"))
     }
+   */
   }
 
+  /*
   "The sequence of searched config locations for host `node42.tier1.example.com` should" - {
     "be as described in the README" in {
       HostFileConfig.searchLocations("node42.tier1.example.com").toList shouldEqual
@@ -81,4 +86,5 @@ class HostFileConfigSpec extends FreeSpec with Matchers {
         "com")
     }
   }
+ */
 }

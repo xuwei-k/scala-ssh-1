@@ -2,8 +2,7 @@ language: scala
 sudo: required
 jdk: oraclejdk8
 script:
-- ./src/test/resources/setup_travis.sh
-- sbt scalafmt::test test:scalafmt::test sbt:scalafmt::test +test:compile "+ test"
+- sbt test
 cache:
   directories:
   - "$HOME/.ivy2/cache"
