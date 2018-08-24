@@ -1,9 +1,10 @@
 #!/bin/sh
 
+set -ex
+
 # Install OpenSSH
 sudo apt-get update -qq
 sudo apt-get install -qq libssh2-1-dev openssh-client openssh-server
-sudo start ssh
 
 # Generate and Register keys
 ssh-keygen -t rsa -f ~/.ssh/id_rsa -N "" -q
